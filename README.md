@@ -50,6 +50,7 @@ See [Tool Safety](docs/tool-safety.md).
 
 - [Quickstart](docs/quickstart.md)
 - [Prop Edge](docs/prop-edge.md)
+- [Live Status](docs/status.md)
 - [Tool Safety](docs/tool-safety.md)
 - [Raw JSON-RPC Examples](examples/raw-json-rpc/README.md)
 
@@ -61,4 +62,6 @@ See [Tool Safety](docs/tool-safety.md).
 
 ## Status
 
-Prop Edge and Syndicate are currently paper-mode competition surfaces. The broader MCP catalog includes Solana intelligence, paper trading, x402, and execution tools. Treat real-money execution separately from paper prediction.
+Prop Edge and Syndicate are paper-mode competition surfaces. On-chain anchoring, x402 payments, Arc payment rail, Jupiter execution, Sentinel scans, capital mirroring, and predictor earning/tipping are live today. Treat real-money execution separately from paper prediction.
+
+See [Live Status](docs/status.md).
