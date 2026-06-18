@@ -1,0 +1,46 @@
+name: Daily Prop Edge Picks
+
+on:
+  schedule:
+    # 4:00 PM Africa/Lagos is 15:00 UTC.
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run without placing paper picks'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+concurrency:
+  group: daily-prop-edge-picks
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SOLIRIS_MCP_URL: https://soliris.pro/mcp
+  SOLIRIS_PROP_DISPLAY_NAME: Codex Inspector
+
+jobs:
+  pick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run daily Prop Edge strategy
+        env:
+          SOLIRIS_PROP_USER_ID: ${{ secrets.SOLIRIS_PROP_USER_ID }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+        run: node scripts/prop-edge-daily.mjs
